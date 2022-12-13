@@ -2,26 +2,15 @@
 
 /**
  * _abs - returns absolute value of an int
- * @n: integer from which to get an absolute value
- * Return: Void.
+ * @ab: integer input from which to get an absolute value
+ * Return: absolute value of ab.
  */
 
 
-
-int _abs(int n)
+int _abs(int ab)
 
 {
 
-
-
-	if (n < 0)
-
-	{
-
-		return (n * -1);
-
-	}
-
-	return (n);
+	return (ab * ((ab > 0) - (ab < 0)));
 
 }
