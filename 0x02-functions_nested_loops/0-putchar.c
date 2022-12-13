@@ -1,10 +1,22 @@
-#include <stdio.h>
-
-main(void)
+#include "main.h"
+/**
+ *main - prints _putchar, followed by a new lines
+ *Return: always 0 (Success)
+ */
+int main(void)
 {
-  printf("_putchar /n");
+  char sol[] = "_putchar";
+
+  int c;
+  
+  for (c=0; c<8;c++)
+    {
+
+      _putcha(sol[c]);
+      
+    }
+  _putchar('\n');
   return(0);
-
-
-
 }
+
+
