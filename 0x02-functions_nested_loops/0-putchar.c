@@ -13,7 +13,7 @@ int main(void)
 
       _putchar(sol[c]);
       
-     }
+    }
      _putchar ('\n');
      return (0);
 }
