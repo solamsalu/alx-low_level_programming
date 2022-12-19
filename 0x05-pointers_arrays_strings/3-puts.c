@@ -2,7 +2,7 @@
 
 /**
  *_puts - is a function that prints a string
- *str: input string
+ *@str: input string
  *Return: a string
  */
 
