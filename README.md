@@ -1,1 +1,1 @@
-C programming or low level programming
+Low level programming
