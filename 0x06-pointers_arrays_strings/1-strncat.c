@@ -2,8 +2,10 @@
 
 /**
  * _strncat - concatenates two strings
+ *
  * @dest: string that is added to
  * @src: string to be appended
+ *
  * Return: a pointer to the resulting string @ dest
  */
 
