@@ -20,5 +20,5 @@ chat *_strncat(char *dest, char *src, int n)
 		dest[len1] = src[i];
 		len1++;
 	}
-	return(dest);
+	return (dest);
 }
