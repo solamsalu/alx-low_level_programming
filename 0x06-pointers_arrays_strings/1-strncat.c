@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- *_strncat - concatenates two strings
- *@dest: string that is added to
- *@src: string to be appended
- *Return: a pointer to the resulting string @ dest
+ * _strncat - concatenates two strings
+ * @dest: string that is added to
+ * @src: string to be appended
+ * Return: a pointer to the resulting string @ dest
  */
 
 char *_strncat(char *dest, char *src, int n)
