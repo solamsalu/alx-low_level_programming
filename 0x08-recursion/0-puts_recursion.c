@@ -2,9 +2,9 @@
 
 /**
  * _puts_recursion - a function that prints a string
- * s: input
+ * @s: input
  *
- *Return: always 0.
+ * Return: On sucess 1.
  */
 
 void _puts_recursion(char *s)
