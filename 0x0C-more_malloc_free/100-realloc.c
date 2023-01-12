@@ -8,7 +8,6 @@
  * @old_size: The size of the allocated space of ptr
  * @new_size: The new size to allocate
  * Return: A pointer to the new allocated memory and free ptr.
- * NULL if can not allocate memory
  */
 void *_realoc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
