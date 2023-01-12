@@ -1,147 +1,130 @@
 #include <stdlib.h>
-
-
+#include <stdio.h>
+#include "main.h"
 /**
- * initDigitArray - allocates and sets to 0 an array to contain the digits
- *   of a base 10 number
- *
- * @size: array size
- * Return: pointer to initialized array, or NULL on failure
- */
-unsigned int *initDigitArray(size_t size)
-{
-	unsigned int *arr = NULL;
-	size_t i;
-
-	arr = malloc(sizeof(unsigned int) * size);
-	if (!arr)
-		return (NULL);
-
-	for (i = 0; i < size; i++)
-		arr[i] = 0;
-
-	return (arr);
-}
-
-
-/**
- * stringIntMultiply - TBD
- *
- * @prod_digits: array to store digits of product
- * @n1_digits: string containing multiplicand digits in ASCII
- * @n2_digits: string containing multiplier digits in ASCII
- * @n1_len: amount of digits in multiplicand
- * @n2_len: amount of digits in multiplier
- */
-void stringIntMultiply(unsigned int *prod_digits, char *n1_digits,
-		       char *n2_digits, size_t n1_len, size_t n2_len)
-{
-	int i, j, sum;
-	unsigned char digit1, digit2;
-
-	if (prod_digits == NULL || n1_digits == NULL || n2_digits == NULL)
-		return;
-
-	for (i = n1_len - 1; i >= 0; i--)
-	{
-		sum = 0;
-		digit1 = n1_digits[i] - '0';
-
-		for (j = n2_len - 1; j >= 0; j--)
-		{
-			digit2 = n2_digits[j] - '0';
-
-			sum += prod_digits[i + j + 1] + (digit1 * digit2);
-
-			prod_digits[i + j + 1] = sum % 10;
-
-			sum /= 10;
-		}
-
-		if (sum > 0)
-			prod_digits[i + j + 1] += sum;
-	}
-}
-
-
-/**
- * stringIsPosInt - validates if string represents a positive integer
- *
- * @s: string to test
- * Return: 1 if true, 0 if false
- */
-int stringIsPosInt(char *s)
-{
-	size_t i;
-
-	for (i = 0; s[i]; i++)
-	{
-		if (s[i] < '0' || s[i] > '9')
-			return (0);
-	}
-
-	return (1);
-}
-
-
-/**
- * error - error return
- *
- * @status: error code to exit with
- */
-void error(int status)
-{
-	_putchar('E');
-	_putchar('r');
-	_putchar('r');
-	_putchar('o');
-	_putchar('r');
-	_putchar('\n');
-	exit(status);
-}
-
-
-/**
- * main - entry point
- *
- * @argc: number of commmand line arguments
- * @argv: array of commmand line arguments
- * Return: 0 on success, 98 on failure
+ * main - Program that mulplies two positive numbers
+ * @argc: Number of argumenets
+ * @argv: Muldimensional array of arguments
+ * Return: Always 0 (Success)
  */
 int main(int argc, char **argv)
 {
-	size_t i, av1_len, av2_len, prod_len;
-	unsigned int *prod_digits = NULL;
+	char b[15000];
+	char *n = b;
+	int i, j;
 
-	if (argc != 3 || !stringIsPosInt(argv[1]) ||
-	    !stringIsPosInt(argv[2]))
-		error(98);
+	if (argc != 3)
+	{
+		printf("Error\n");
+		exit(98);
+	}
+	if (argv[1][0] == '0' || argv[2][0] == '0')
+	{
+		putchar('0');
+		putchar(10);
+		return (0);
+	}
 
-	for (i = 0, av1_len = 0; argv[1][i]; i++)
-		av1_len++;
+	n = big_mult(argv[1], argv[2]);
 
-	for (i = 0, av2_len = 0; argv[2][i]; i++)
-		av2_len++;
-
-	prod_len = av1_len + av2_len;
-	prod_digits = initDigitArray(prod_len);
-	if (prod_digits == NULL)
-		error(98);
-
-	stringIntMultiply(prod_digits, argv[1], argv[2], av1_len, av2_len);
-
-	/* omit leading zeroes */
-	for (i = 0; !prod_digits[i] && i < prod_len; i++)
-	{}
-
-	if (i == prod_len)
-		_putchar('0');
-
-	for (; i < prod_len; i++)
-		_putchar(prod_digits[i] + '0');
-	_putchar('\n');
-
-	free(prod_digits);
+	for (i = 0, j = 0;; i++)
+	{
+		if (n[i] != '0')
+			j = 1;
+		if (j == 1 && n[i] == '\0')
+			break;
+		if (j == 1)
+			putchar(n[i]);
+	}
+	putchar(10);
 
 	return (0);
 }
+
+/**
+ * _calloc - Function that allocates memory for an array
+ * @nmemb: Elements of array
+ * @size: Size of data type
+ * Return: Void
+ */
+void *_calloc(unsigned int nmemb, unsigned int size)
+{
+	unsigned int i;
+	char *p;
+
+	if (nmemb == 0 || size == 0)
+		return (NULL);
+
+	p = malloc(nmemb * size);
+
+	if (p == NULL)
+		return (NULL);
+
+	for (i = 0; i < nmemb * size; i++)
+		p[i] = 0;
+
+	return (p);
+}
+
+/**
+ * _strlen - Function that calculates the length of a string
+ * @s: String to be checked
+ * Return: The lengtht of string or -1 if it fails
+ */
+int _strlen(char *s)
+{
+	int i;
+
+	if (s == NULL)
+		return (-1);
+
+	for (i = 0; s[i]; i++)
+		;
+
+	return (i);
+}
+
+/**
+ * big_mult - Function that multiplies two big numbers
+ * @s1: String big number 1
+ * @s2: String big number 2
+ * Return: a result of the two big numbers
+ */
+char *big_mult(char *s1, char *s2)
+{
+	int i, j, k, l, value;
+	char *n;
+
+	i = _strlen(s1);
+	j = _strlen(s2);
+	k = i + j + 1;
+	n = _calloc(k, sizeof(char));
+	if (n == NULL)
+		printf("Error\n"), exit(98);
+	n[k - 1] = '\0';
+
+	for (--i; i >= 0; i--)
+	{
+		if (s1[i] < '0' || s1[i] > '9')
+			free(n), printf("Error\n"), exit(98);
+		for (l = j - 1; l >= 0; l--)
+		{
+			if (s2[l] < '0' || s2[l] > '9')
+				free(n), printf("Error\n"), exit(98);
+			value = (s1[i] - '0') * (s2[l] - '0');
+			n[i + l + 1] += value;
+			if (n[i + l + 1] > 9)
+			{
+				value = n[i + l + 1];
+				n[i + l + 1] %= 10;
+				n[i + l] += value / 10;
+			}
+		}
+	}
+
+	for (i = 0; i < k - 1; i++)
+		n[i] += '0';
+
+	return (n);
+}
+
