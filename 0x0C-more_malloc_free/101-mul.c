@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
+
 /**
  * main - Program that mulplies two positive numbers
  * @argc: Number of argumenets
@@ -127,4 +127,3 @@ char *big_mult(char *s1, char *s2)
 
 	return (n);
 }
-
