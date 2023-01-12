@@ -3,11 +3,12 @@
 #include <stdio.h>
 
 /**
- * _realloc - allocates memory block using malloc and free
- * @ptr: pointer to the memory previosly allocated with malloc
- * @old_size: The size of the allocated space of ptr
- * @new_size: The new size to allocate
- * Return: A pointer to the new allocated memory and free ptr.
+ * _realloc - reallocates old to new, set conditions from problem
+ * returning dest w/ size of malloc new_size, set src as ptr
+ * @ptr: pointer to memory prev alloc, must free end
+ * @old_size: input old
+ * @new_size: input new
+ * Return: 0
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
