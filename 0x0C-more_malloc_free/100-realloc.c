@@ -9,9 +9,9 @@
  * @new_size: The new size to allocate
  * Return: A pointer to the new allocated memory and free ptr.
  */
-void *_realoc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	char *nptr;
+	char *dest, *src;
 	unsigned int i;
 
 	if (new_size == old_size)
@@ -19,32 +19,29 @@ void *_realoc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 	if (ptr == NULL)
 	{
-		nptr = malloc(new_size);
-
-		if (nptr == NULL)
-			return (NULL);
-
-		return (nptr);
-	}
-	else
-	{
-		if (new_size == 0)
+		ptr = malloc(new_size);
+		if (ptr == NULL)
 		{
-			free(ptr);
 			return (NULL);
 		}
+		return (ptr);
 	}
 
-	nptr = malloc(new_size);
+	if (new_size == 0 && ptr != NULL)
+	{
+		free(ptr);
+		return (NULL);
+	}
 
-	if (nptr == NULL)
+	dest = malloc(new_size);
+	if (dest == NULL)
 		return (NULL);
 
-	for (i = 0; i < old_size && i < new_size; i++)
-	{
-		nptr[i] = ((char *) ptr)[i];
-	}
+	src = ptr;
 
+	for (i = 0; i < new_size && i < old_size; i++)
+		dest[i] = src[i];
 	free(ptr);
-	return (nptr);
+
+	return (dest);
 }
