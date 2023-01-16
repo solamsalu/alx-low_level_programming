@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * new_dog defines a new  dog
+ * new_dog - defines a new  dog
  * @name: the name of the new dog
  * @age: the age of the new dog
  * @owner: the owner of the new dog
