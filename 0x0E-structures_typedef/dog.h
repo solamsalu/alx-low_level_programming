@@ -1,5 +1,8 @@
+#ifndef _DOG_
+#define _DOG_
+
 /**
- * sturct dog  - the dog structure
+ * sturct dog - the dog structure
  * @name: the name of the dog
  * @age:  the age of the dog
  * @owner: the owner of the dog
