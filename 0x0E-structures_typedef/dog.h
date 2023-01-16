@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 /**
  * sturct dog  - the dog structure
  * @name: the name of the dog
@@ -8,15 +6,18 @@
  *
  * Return: NULL
  */
-struct dog {
+typedef struct dog
+{
 	char *name;
 	float age;
 	char *owner;
-};
+} dog_t;
 
-int main(void)
-{
-	struct dog user;
+void init_dog(struct dog *d, char *name, float age, char *owner);
+void print_dog(struct dog *d);
+dog_t *new_dog(char *name, float age, char *owner);
+char *dup_strint(char *s);
+void free_dog(dog_t *d);
 
-	return (0);
-}
+
+#endif
