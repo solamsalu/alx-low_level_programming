@@ -1,50 +1,40 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
- * _realloc - allocates memory block using malloc and free
- * @ptr: pointer to the memory previosly allocated with malloc
- * @old_size: The size of the allocated space of ptr
- * @new_size: The new size to allocate
- * Return: A pointer to the new allocated memory and free ptr.
+ * *_realloc - reallocates memory for a pointer
+ *
+ * @ptr: pointer to old memory allocated
+ * @old_size: size of memory before
+ * @new_size: size of memory after
+ * Return: pointer to new memory allocated
  */
-void *_realoc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	char *nptr;
-	unsigned int i;
+	char *new;
+	unsigned int i, min;
 
 	if (new_size == old_size)
 		return (ptr);
-
 	if (ptr == NULL)
 	{
-		nptr = malloc(new_size);
-
-		if (nptr == NULL)
-			return (NULL);
-
-		return (nptr);
+		new = malloc(new_size);
+		return (new);
 	}
-	else
+	else if (new_size == 0)
 	{
-		if (new_size == 0)
-		{
-			free(ptr);
-			return (NULL);
-		}
-	}
-
-	nptr = malloc(new_size);
-
-	if (nptr == NULL)
+		free(ptr);
 		return (NULL);
-
-	for (i = 0; i < old_size && i < new_size; i++)
-	{
-		nptr[i] = ((char *) ptr)[i];
 	}
-
+	new = malloc(new_size);
+	if (new == NULL)
+		return (NULL);
+	if (new_size > old_size)
+		min = old_size;
+	else
+		min = new_size;
+	for (i = 0; i < min; i++)
+		new[i] = *((char *)ptr + i);
 	free(ptr);
-	return (nptr);
+	return ((void *)new);
 }
