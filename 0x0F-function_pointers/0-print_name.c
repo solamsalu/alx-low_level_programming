@@ -1,10 +1,11 @@
+#include <stdio.h>
 #include "function_pointers.h"
-#include <stdlib.h>
 
 /**
- * print_name - prints the name
- * @name: name
- * @f: function
+ * print_name - check the code for Holberton School students.
+ * @name: name of a person.
+ * @f: print name as is and UPPERCASE.
+ * Return: Always 0.
  */
 void print_name(char *name, void (*f)(char *))
 {
