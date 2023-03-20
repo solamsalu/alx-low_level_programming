@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "arithmatic.h"
 
 int add(int a, int b)
@@ -18,6 +17,12 @@ int mul(int a, int b)
 {
     int nMul = a * b;
     return nMul;
+}
+
+int div(int a, int b)
+{
+    int nDiv = a / b;
+    return nDiv;
 }
 
 int mod(int a, int b)
