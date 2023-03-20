@@ -1,1 +1,1 @@
-c Dynamic liberaries
+c - dynamic liberaries
